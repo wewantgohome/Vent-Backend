@@ -38,6 +38,15 @@ module.exports = class Event extends Sequelize.Model {
           type: Sequelize.STRING(50),
           allowNull: false,
         },
+        views: {
+          type: Sequelize.INTEGER(20),
+          allowNull: false,
+          defaultValue: 0,
+        },
+        eventImg: {
+          type: Sequelize.STRING(200),
+          allowNull: true,
+        },
       },
       {
         sequelize,
@@ -51,5 +60,10 @@ module.exports = class Event extends Sequelize.Model {
   }
   static associate(db) {
     db.Event.belongsTo(db.User, { foreignKey: "author", targetKey: "id" });
+    // db.Event.belongsToMany(db.User, {
+    //   through: "UserEvents",
+    //   foreignKey: "eventId",
+    //   otherKey: "userId",
+    // });
   }
 };
