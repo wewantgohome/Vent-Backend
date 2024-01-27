@@ -1,8 +1,8 @@
 const express = require('express');
+const userRouter = require('./user');
+const router = express.Router();
 
-const signup = async(req,res) =>{
-    
+router.use("/user",userRouter);
 
-}
 
-module.exports = signup;
+module.exports = router;
