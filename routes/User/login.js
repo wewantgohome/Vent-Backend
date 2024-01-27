@@ -26,7 +26,7 @@ const login = async (req, res) => {
 
     return res
       .status(200)
-      .send(authUtil.jwtSent(200, "로그인 성공", accessToken, refreshToken));
+      .send(authUtil.jwtSent(200, "유저 로그인 성공", accessToken, refreshToken));
   } catch (err) {
     console.error(err);
     return res.status(500).send(authUtil.successFalse(500, "로그인 실패"));

@@ -21,7 +21,7 @@ const signup = async (req, res) => {
     });
     return res
       .status(201)
-      .send(authUtil.successTrue(201, "회원가입에 성공하였습니다."));
+      .send(authUtil.successTrue(201, "유저 회원가입에 성공하였습니다."));
   } catch (err) {
     console.error(err);
     return res.status(500).send(authUtil.successFalse(500, "회원가입 실패"));

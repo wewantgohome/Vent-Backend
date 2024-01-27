@@ -3,10 +3,10 @@ require("dotenv").config();
 
 const secret = process.env.SECRET_KEY;
 
-const generateAccessToken = (userId) => {
+const generateAccessToken = (id) => {
   const accessToken = jwt.sign(
     {
-      id: userId,
+      id,
     },
     secret,
     {
@@ -17,10 +17,10 @@ const generateAccessToken = (userId) => {
   return accessToken;
 };
 
-const generateRefreshToken = (userId) => {
+const generateRefreshToken = (id) => {
   const refreshToken = jwt.sign(
     {
-      id: userId,
+      id,
     },
     secret,
     {

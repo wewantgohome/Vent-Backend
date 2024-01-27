@@ -4,7 +4,7 @@ module.exports = class Business extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        bussinessId: {
+        businessId: {
           type: Sequelize.STRING(20),
           allowNull: false,
           unique: true,
@@ -18,15 +18,15 @@ module.exports = class Business extends Sequelize.Model {
           type: Sequelize.STRING(20),
           allowNull: false,
         },
-        bussinessNum: {
+        businessNum: {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
       },
       {
         sequelize,
-        modelName: "Bussiness",
-        tableName: "bussiness",
+        modelName: "Business",
+        tableName: "business",
         timestamps: true,
         createdAt: "createdAt",
         updatedAt: "updatedAt",
