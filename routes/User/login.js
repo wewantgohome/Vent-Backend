@@ -15,11 +15,14 @@ const login = async (req, res) => {
         userId,
       },
     });
+    if(!user){
+        return res.status(200).send(authUtil.successTrue(400, "존재하지 않는 아이디입니다."))
+    }
     const checkPassword = await bcrypt.compare(pwd, user.password);
     if (!checkPassword) {
       return res
         .status(200)
-        .send(authUtil.successFalse(400, "아이디나 비밀번호가 맞지 않습니다."));
+        .send(authUtil.successFalse(400, "비밀번호가 맞지 않습니다."));
     }
     const accessToken = generateAccessToken(userId);
     const refreshToken = generateRefreshToken(userId);

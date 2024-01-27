@@ -24,7 +24,7 @@ const login = async (req, res) => {
     if (!checkPassword) {
       return res
         .status(200)
-        .send(authUtil.successTrue(400, "아이디나 비밀번호가 맞지 않습니다."));
+        .send(authUtil.successTrue(400, "비밀번호가 맞지 않습니다."));
     }
     const accessToken = generateAccessToken(businessId);
     const refreshToken = generateRefreshToken(businessId);
