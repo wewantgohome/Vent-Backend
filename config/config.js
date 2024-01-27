@@ -6,6 +6,7 @@ const development = {
   password: env.MYSQL_PASSWORD,
   database: env.MYSQL_DATABASE,
   host: env.MYSQL_HOST,
+  port: env.MYSQL_PORT,
   dialect: "mysql",
 };
 

@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const port = process.env.PORT;
+const cors = require("cors");
 const router = require("./routes");
 const { sequelize } = require("./models");
 sequelize
@@ -15,6 +16,7 @@ const path = require("path");
 const publicPath = path.join(__dirname, "public");
 app.use("/img", express.static(path.join(__dirname, "uploads")));
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", router);
 

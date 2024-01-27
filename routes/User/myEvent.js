@@ -43,7 +43,7 @@ const myEventByEnded = async (req, res) => {
     const events = await Event.findAll({
       where: {
         endDate: {
-          [Sequelize.Op.lt]: currentDate, // 현재 시간보다 이전인 경우
+          [Sequelize.Op.lt]: currentDate, 
         },
         author: req.user.id,
       },

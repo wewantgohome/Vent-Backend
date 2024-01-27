@@ -27,7 +27,6 @@ const joinEvent = async (req, res) => {
       return res.status(400).send({ message: "이미 이벤트에 신청하였습니다." });
     }
 
-    // UserEvent 모델을 사용하여 N:M 관계 설정
     const userEvent = await UserEvent.create({
       userId: id,
       eventId,
