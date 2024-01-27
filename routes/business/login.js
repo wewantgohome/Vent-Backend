@@ -1,4 +1,4 @@
-const { Business } = require("../../models");
+const { User } = require("../../models");
 const authUtil = require("../../response/authUtil");
 const {
   generateAccessToken,
@@ -10,9 +10,9 @@ const login = async (req, res) => {
   const { businessId, pwd } = req.body;
 
   try {
-    const business = await Business.findOne({
+    const business = await User.findOne({
       where: {
-        businessId,
+        userId : businessId,
       },
     });
     if (!business) {

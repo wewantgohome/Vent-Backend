@@ -10,22 +10,36 @@ module.exports = class User extends Sequelize.Model {
           unique: true,
         },
         password: {
-          type: Sequelize.STRING(50),
+          type: Sequelize.STRING(250),
           allowNull: false,
         },
 
         name: {
           type: Sequelize.STRING(20),
-          allowNull: false,
+          allowNull: true,
         },
         age: {
           type: Sequelize.INTEGER,
-          allowNull: false,
+          allowNull: true,
+        },
+
+        businessName: {
+          type: Sequelize.STRING(20),
+          allowNull: true,
+        },
+        businessNum: {
+          type: Sequelize.INTEGER,
+          allowNull: true,
+        },
+        type: {
+          type: Sequelize.ENUM,
+          values: ["common", "company"],
+          defaultValue: "common",
         },
       },
       {
         sequelize,
-        modelName: "User",
+        modelName: "Users",
         tableName: "users",
         timestamps: true,
         createdAt: "createdAt",
@@ -33,5 +47,7 @@ module.exports = class User extends Sequelize.Model {
       }
     );
   }
-  static associate(db) {}
+  static associate(db) {
+    db.User.hasMany(db.Event, { foreignKey: "author", targetKey: "id" });
+  }
 };

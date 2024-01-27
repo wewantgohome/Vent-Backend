@@ -1,4 +1,4 @@
-const { Business } = require("../../models");
+const { User } = require("../../models");
 const bcrypt = require("bcrypt");
 const authUtil = require("../../response/authUtil");
 
@@ -13,9 +13,10 @@ const signup = async (req, res) => {
     }
     const hashedPwd = await bcrypt.hash(pwd, salt);
     const intBussinessNum = parseInt(businessNum);
-    await Business.create({
-      businessId,
+    await User.create({
+      userId : businessId,
       password: hashedPwd,
+      type : "company",
       businessName,
       businessNum: intBussinessNum,
     });

@@ -49,5 +49,7 @@ module.exports = class Event extends Sequelize.Model {
       }
     );
   }
-  static associate(db) {}
+  static associate(db) {
+    db.Event.belongsTo(db.User, { foreignKey: "author", targetKey: "id" });
+  }
 };

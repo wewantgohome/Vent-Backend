@@ -33,5 +33,7 @@ module.exports = class Business extends Sequelize.Model {
       }
     );
   }
-  static associate(db) {}
+  static associate(db) {
+    db.Business.hasMany(db.Event, {foreignKey :'author', sourceKey :'id'})
+  }
 };
