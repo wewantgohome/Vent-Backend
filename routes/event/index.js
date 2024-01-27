@@ -4,12 +4,16 @@ const { authenticateUser } = require("../../middleware/authenticate");
 const eventDetail = require("./detail");
 const joinEvent = require("./join");
 const { upload } = require("../../middleware/multer");
-const commonEvent = require("./main");
+const { commonEvents, companyEvents, hello } = require("./getEvent.js");
+const userEvents = require("./userEvent.js");
 const router = express.Router();
 
 router.post("/create", authenticateUser, upload.single("img"), createEvent);
-router.get("/:id", eventDetail);
-router.post("/join/:eventId", authenticateUser, joinEvent);
-router.get("/common", authenticateUser, commonEvent);
+router.get("/:id", authenticateUser, eventDetail);
+router.post("/join/:eventId", authenticateUser, upload.single("img"),joinEvent);
+router.post("/common", authenticateUser, commonEvents);
+router.post("/company", authenticateUser, companyEvents);
+
+router.post("/user", authenticateUser, userEvents)
 
 module.exports = router;

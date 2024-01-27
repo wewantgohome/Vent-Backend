@@ -4,11 +4,10 @@ const authUtil = require("../../response/authUtil");
 const createEvent = async (req, res) => {
   let status = "NotStarted";
   const now = new Date();
-  console.log(now);
   const { eventName, description, link, startDate, endDate, price, place } =
     req.body;
   try {
-    console.log(req.file);
+    
     const filePath = !req.file ? null : req.file.path;
     const formatStartDate = new Date(startDate);
     const formatEndDate = new Date(endDate);

@@ -1,4 +1,3 @@
-// models/UserEvents.js
 const Sequelize = require("sequelize");
 
 module.exports = class UserEvent extends Sequelize.Model {
@@ -33,5 +32,8 @@ module.exports = class UserEvent extends Sequelize.Model {
     );
   }
 
-  static associate(db) {}
+  static associate(db) {
+    db.UserEvent.belongsTo(db.User, { foreignKey: "userId" });
+    db.UserEvent.belongsTo(db.Event, { foreignKey: "eventId" });
+  }
 };

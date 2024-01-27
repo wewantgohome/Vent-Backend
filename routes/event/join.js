@@ -1,14 +1,12 @@
-// routes/event/join.js
-const express = require("express");
-const router = express.Router();
+
 const { UserEvent, Event, User } = require("../../models");
 
 const joinEvent = async (req, res) => {
   try {
     const { eventId } = req.params;
     const { id } = req.user;
-    const { verifyImg, description } = req.body;
-
+    const { description } = req.body;
+    const filePath = !req.file ? null : req.file.path;
     const event = await Event.findByPk(eventId);
     const user = await User.findByPk(id);
     if (!event || !user) {
@@ -30,7 +28,7 @@ const joinEvent = async (req, res) => {
     const userEvent = await UserEvent.create({
       userId: id,
       eventId,
-      verifyImg,
+      verifyImg : filePath,
       description,
     });
 
