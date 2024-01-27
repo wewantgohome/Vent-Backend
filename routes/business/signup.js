@@ -3,10 +3,14 @@ const bcrypt = require("bcrypt");
 const authUtil = require("../../response/authUtil");
 
 const signup = async (req, res) => {
-  const { businessId, pwd, businessName, businessNum } = req.body;
+  const { businessId, pwd, pwdCheck, businessName, businessNum } = req.body;
   const salt = await bcrypt.genSalt(10);
   try {
-
+    if (pwd !== pwdCheck) {
+      return res
+        .status(200)
+        .send(authUtil.successTrue(400, "패스워드가 맞지 않습니다."));
+    }
     const hashedPwd = await bcrypt.hash(pwd, salt);
     const intBussinessNum = parseInt(businessNum);
     await User.create({
