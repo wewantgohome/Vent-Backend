@@ -1,41 +1,53 @@
 const Sequelize = require("sequelize");
 
-module.exports = class User extends Sequelize.Model {
+module.exports = class Event extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        userId: {
-          type: Sequelize.STRING(20),
+        eventName: {
+          type: Sequelize.STRING(100),
           allowNull: false,
-          unique: true,
         },
-        password: {
-          type: Sequelize.STRING(50),
+        description: {
+          type: Sequelize.STRING(3000),
           allowNull: false,
         },
 
-        name: {
-          type: Sequelize.STRING(20),
+        link: {
+          type: Sequelize.STRING(200),
           allowNull: false,
         },
-        age: {
-          type: Sequelize.INTEGER,
+        startDate: {
+          type: Sequelize.DATE,
           allowNull: false,
         },
-        nick: {
-          type: Sequelize.STRING(20),
+        endDate: {
+          type: Sequelize.DATE,
           allowNull: false,
-          unique: true,
+        },
+        price: {
+          type: Sequelize.INTEGER(20),
+          allowNull: false,
+        },
+        status: {
+          type: Sequelize.ENUM,
+          values: ["NotStarted", "InProgress", "Ended"],
+          allowNull: false,
+        },
+        place: {
+          type: Sequelize.STRING(50),
+          allowNull: false,
         },
       },
       {
         sequelize,
-        modelName: "User",
-        tableName: "users",
+        modelName: "Event",
+        tableName: "events",
         timestamps: true,
         createdAt: "createdAt",
         updatedAt: "updatedAt",
       }
     );
   }
+  static associate(db) {}
 };
